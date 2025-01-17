@@ -95,11 +95,9 @@ namespace Anagram
                 }
             }
 
-            string inputCharacters = lettersOnly.Replace(dataValues.InputText, "");
+            string inputCharacters = lettersOnly.Replace(dataValues.InputText,"");
             buf.Append("cleaned characters: ").AppendLine(inputCharacters);
-            char[] inputArray = inputCharacters.ToCharArray();
-            Array.Sort(inputArray);
-            buf.Append("alphabetized: ").AppendLine(string.Join("", inputArray));
+            buf.Append("alphabetized: ").AppendLine(SortCharacters(inputCharacters));
             buf.AppendLine();
             buf.AppendLine("<generated> - <leftover characters>");
             buf.AppendLine("-----------------------------------");
@@ -110,6 +108,14 @@ namespace Anagram
             // TODO
 
             dataValues.Output = buf.ToString();
+        }
+
+        private static string SortCharacters(string input)
+        {
+            string inputCharacters = lettersOnly.Replace(input, "");
+            char[] inputArray = inputCharacters.ToCharArray();
+            Array.Sort(inputArray);
+            return string.Join("", inputArray);
         }
 
         public class MyContext : INotifyPropertyChanged
